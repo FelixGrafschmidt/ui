@@ -22,6 +22,7 @@
 </template>
 
 <script setup lang="ts">
+	import { computed } from "vue";
 	// TODO: Loading
 	import {} from "nuxt-icon";
 
