@@ -11,7 +11,7 @@ export default defineNuxtModule<ModuleOptions>({
 	},
 	// Default configuration options of the Nuxt module
 	defaults: {},
-	async setup() {
+	async setup(_, nuxt) {
 		const { resolve } = createResolver(import.meta.url);
 
 		await installModule("@unocss/nuxt", {
@@ -21,6 +21,11 @@ export default defineNuxtModule<ModuleOptions>({
 			transformers: [transformerDirectives()],
 		});
 		await installModule("nuxt-icon");
+
+		const typesDir = resolve("../types");
+		nuxt.hook("prepare:types", ({ references }) => {
+			references.push({ path: `${typesDir}/Button.vue.d.ts` });
+		});
 		// From the runtime directory
 		addComponent({
 			name: "FGButton",

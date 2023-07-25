@@ -41,8 +41,10 @@
 </template>
 
 <script setup lang="ts">
-	const variants = ["solid", "outline", "ghost", "link"];
-	const colors = ["black", "gray", "green", "red", "teal", "white"];
+	import { Color, Variant } from "../types/Button.vue";
+
+	const variants: Variant[] = ["solid", "outline", "ghost", "link"];
+	const colors: Color[] = ["black", "gray", "green", "red", "teal", "white"];
 </script>
 
 <style>

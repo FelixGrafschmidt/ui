@@ -23,8 +23,6 @@
 
 <script setup lang="ts">
 	import { computed } from "vue";
-	// TODO: Loading
-	import {} from "nuxt-icon";
 
 	export type Color = "teal" | "green" | "red" | "gray" | "black" | "white";
 	export type Variant = "solid" | "outline" | "ghost" | "link";
