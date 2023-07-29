@@ -8,7 +8,7 @@
 		:class="classes"
 		@click="to ? undefined : $emit('click', $event)"
 	>
-		<Icon v-if="leadingIcon || (icon && !trailing)" :name="leadingIcon || icon" />
+		<Icon v-if="leadingIcon || (icon && !trailing)" :name="leadingIcon || icon || ''" />
 		<slot v-else name="leading" />
 		<div v-if="loading" :class="loadingClasses" />
 		<template v-else>
@@ -16,7 +16,7 @@
 			<slot v-else />
 		</template>
 
-		<Icon v-if="trailingIcon || (icon && trailing)" :name="trailingIcon || icon" />
+		<Icon v-if="trailingIcon || (icon && trailing)" :name="trailingIcon || icon || ''" />
 		<slot v-else name="trailing" />
 	</component>
 </template>
@@ -116,18 +116,32 @@
 		},
 	};
 
-	const padding = props.padded ? "px-2" : "px-0";
+	const padding = computed(() => {
+		return props.padded ? "px-2" : "px-0";
+	});
 
-	const width = props.block ? "w-full" : "w-fit";
+	const width = computed(() => {
+		return props.block ? "w-full" : "w-fit";
+	});
 
-	const disabled = props.disabled ? "grayscale-50 pointer-events-none" : "";
+	const disabled = computed(() => {
+		return props.disabled ? "grayscale-50 pointer-events-none" : "";
+	});
 
-	const rounded = props.round ? "rounded-full" : "rounded";
+	const rounded = computed(() => {
+		return props.round ? "rounded-full" : "rounded";
+	});
 
 	const classes = computed(() => {
-		return [sizes[props.size], variants[props.variant], colors[props.color][props.variant], padding, width, disabled, rounded].join(
-			" "
-		);
+		return [
+			sizes[props.size],
+			variants[props.variant],
+			colors[props.color][props.variant],
+			padding.value,
+			width.value,
+			disabled.value,
+			rounded.value,
+		].join(" ");
 	});
 
 	const loadingClasses = computed(() => {

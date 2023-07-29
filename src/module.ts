@@ -22,14 +22,20 @@ export default defineNuxtModule<ModuleOptions>({
 		});
 		await installModule("nuxt-icon");
 
-		const typesDir = resolve("../types");
 		nuxt.hook("prepare:types", ({ references }) => {
-			references.push({ path: `${typesDir}/Button.vue.d.ts` });
+			references.push(
+				{ path: resolve("runtime/components/Button.vue.d.ts") },
+				{ path: resolve("runtime/components/Container.vue.d.ts") }
+			);
 		});
 		// From the runtime directory
 		addComponent({
 			name: "FGButton",
 			filePath: resolve("runtime/components/Button.vue"),
+		});
+		addComponent({
+			name: "FGContainer",
+			filePath: resolve("runtime/components/Container.vue"),
 		});
 	},
 });
