@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.0.7
+
+[compare changes](https://github.com/FelixGrafschmidt/ui/compare/v1.0.5...v1.0.7)
+
+### 🏡 Chore
+
+- **release:** V1.0.6 ([edb2a99](https://github.com/FelixGrafschmidt/ui/commit/edb2a99))
+
+### ❤️  Contributors
+
+- FelixGrafschmidt ([@FelixGrafschmidt](http://github.com/FelixGrafschmidt))
+
 ## v1.0.6
 
 [compare changes](https://github.com/FelixGrafschmidt/ui/compare/v1.0.5...v1.0.6)
