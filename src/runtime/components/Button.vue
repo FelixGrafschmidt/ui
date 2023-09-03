@@ -4,7 +4,7 @@
 		:target="target"
 		:href="to"
 		:disabled="props.disabled"
-		class="flex flex-row cursor-pointer items-center justify-between gap-1 border"
+		class="flex flex-row cursor-pointer items-center gap-1 border"
 		:class="classes"
 		@click="to ? undefined : $emit('click', $event)"
 	>
@@ -38,7 +38,7 @@
 		trailing?: boolean;
 		disabled?: boolean;
 		loading?: boolean;
-		block?: boolean;
+		fullwidth?: boolean;
 		padded?: boolean;
 		to?: string | URL;
 		round?: boolean;
@@ -121,7 +121,7 @@
 	});
 
 	const width = computed(() => {
-		return props.block ? "w-full" : "w-fit";
+		return props.fullwidth ? "w-full justify-center" : "w-fit justify-between";
 	});
 
 	const disabled = computed(() => {

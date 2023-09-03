@@ -6,9 +6,6 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         type: import("vue").PropType<Variant>;
         default: string;
     };
-    block: {
-        type: import("vue").PropType<boolean>;
-    };
     color: {
         type: import("vue").PropType<Color>;
         default: string;
@@ -52,6 +49,9 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
     trailingIcon: {
         type: import("vue").PropType<string>;
         default: any;
+    };
+    fullwidth: {
+        type: import("vue").PropType<boolean>;
     };
     padded: {
         type: import("vue").PropType<boolean>;
@@ -64,9 +64,6 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
         type: import("vue").PropType<Variant>;
         default: string;
     };
-    block: {
-        type: import("vue").PropType<boolean>;
-    };
     color: {
         type: import("vue").PropType<Color>;
         default: string;
@@ -110,6 +107,9 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<{
     trailingIcon: {
         type: import("vue").PropType<string>;
         default: any;
+    };
+    fullwidth: {
+        type: import("vue").PropType<boolean>;
     };
     padded: {
         type: import("vue").PropType<boolean>;
