@@ -8,6 +8,7 @@ export default defineNuxtConfig({
 		global: true,
 		dirs: ["~/components"],
 	},
+	compatibilityDate: "2024-07-06",
 	experimental: {
 		asyncContext: true,
 	},
