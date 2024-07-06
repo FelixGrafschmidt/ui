@@ -1,9 +1,0 @@
-{
-	"compilerOptions": {
-		// ...
-	},
-	"files": [
-		"./src/runtime/components/Button.vue",
-		"./src/runtime/components/Container.vue",
-	]
-}
