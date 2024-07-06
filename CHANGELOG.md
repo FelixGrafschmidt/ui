@@ -1,5 +1,17 @@
 # Changelog
 
+## v1.0.8
+
+[compare changes](https://github.com/FelixGrafschmidt/ui/compare/v1.0.7...v1.0.8)
+
+### 🏡 Chore
+
+- **release:** V1.0.7 ([fd968c7](https://github.com/FelixGrafschmidt/ui/commit/fd968c7))
+
+### ❤️ Contributors
+
+- FelixGrafschmidt ([@FelixGrafschmidt](http://github.com/FelixGrafschmidt))
+
 ## v1.0.7
 
 [compare changes](https://github.com/FelixGrafschmidt/ui/compare/v1.0.5...v1.0.7)
