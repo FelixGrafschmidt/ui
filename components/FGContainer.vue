@@ -36,7 +36,7 @@
 					"5xl": "max-w-5xl",
 					"6xl": "max-w-6xl",
 					"7xl": "max-w-7xl",
-			  }[props.maxwidth]
+				}[props.maxwidth]
 			: ""
 	);
 	const maxheight = computed(() =>
@@ -53,7 +53,7 @@
 					"5xl": "max-h-5xl",
 					"6xl": "max-h-6xl",
 					"7xl": "max-h-7xl",
-			  }[props.maxheight]
+				}[props.maxheight]
 			: ""
 	);
 
