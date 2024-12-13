@@ -1,7 +1,17 @@
 <template>
 	<main>
-		<div class="h-96 max-w-screen w-screen-lg flex flex-col px-12">
-			<FGTable :columns="columns" :data="users" />
+		<div class="h-96 w-screen-xl flex flex-col p-12">
+			<FGTable :columns="columns" :data="users" @click="console.log($event)">
+				<template #header-name="{ data }">
+					<FGTableCell
+						:width="data.initialWidth"
+						:title="data.title"
+						:classes="[FGTableCellDefaultClasses, 'border-b justify-center border-b-gray-2'].join(' ')"
+					>
+						{{ data.title }}
+					</FGTableCell>
+				</template>
+			</FGTable>
 		</div>
 	</main>
 </template>
@@ -9,6 +19,7 @@
 <script setup lang="ts">
 	import "@unocss/reset/tailwind.css";
 	import type { TableColumns } from "./components/FGTable.vue";
+	import { FGTableCellDefaultClasses } from "./components/FGTableCell.vue";
 
 	interface User {
 		name: string;
@@ -34,7 +45,7 @@
 				{
 					id: "id",
 					title: "ID",
-					initialWidth: 200,
+					initialWidth: 50,
 					grow: true,
 				},
 			],
@@ -42,7 +53,7 @@
 				{
 					id: "name",
 					title: "Name",
-					initialWidth: 200,
+					initialWidth: 250,
 				},
 				{
 					id: "street",
@@ -52,14 +63,14 @@
 				{
 					id: "birthday",
 					title: "Birthday",
-					initialWidth: 200,
+					initialWidth: 300,
 				},
 			],
 			right: [
 				{
 					id: "createdAt",
 					title: "Created At",
-					initialWidth: 200,
+					initialWidth: 300,
 				},
 			],
 		};
