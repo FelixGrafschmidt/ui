@@ -1,10 +1,10 @@
 <template>
 	<div :style="{ width: `${width}px`, maxWidth: `${width}px` }" :title="title" :class="classes" @click="emit('click', $event)">
-		<span class="truncate">
-			<slot>
+		<slot>
+			<span class="truncate">
 				{{ text }}
-			</slot>
-		</span>
+			</span>
+		</slot>
 	</div>
 </template>
 
@@ -15,12 +15,13 @@
 <script lang="ts" setup>
 	withDefaults(
 		defineProps<{
-			title: string;
+			title?: string;
 			text?: string;
 			width: number;
 			classes?: string;
 		}>(),
 		{
+			title: "",
 			text: "",
 			classes: FGTableCellDefaultClasses,
 		}
