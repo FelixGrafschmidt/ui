@@ -83,9 +83,9 @@
 		alt: undefined,
 		placeholder: undefined,
 		fallbackIcon: undefined, //() => config.default.icon
-		size: "sm", //() => config.default.size, validator(value: string) { return Object.keys(config.size).includes(value) }
-		imgClass: "", //why not undefined?
-		// class: '', //why not undefined?
+		size: "sm", //() => config.default.size
+		imgClass: "",
+		// class: '',
 		/**
 		chipColor: {
 		  type: String as PropType<AvatarChipColor>,
