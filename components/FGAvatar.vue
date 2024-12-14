@@ -1,9 +1,8 @@
 <template>
 	<span :class="`${ui.wrapper} ${ui.background} ${ui.rounded} ${ui.size[size]}`">
-		<component :is="as" v-if="src" :class="`${ui.rounded} ${ui.size[size]} ${imgClass} object-cover`" :alt="alt" :src="src" />
-		<span v-else-if="text" :class="ui.text">{{ text }}</span>
-		<Icon v-else-if="icon" :name="icon" :class="`${ui.icon.base} ${ui.icon.size[size]} `" />
-		<span v-else-if="placeholder" :class="ui.placeholder">{{ placeholder }}</span>
+		<img v-if="src" :class="`${ui.rounded} ${ui.size[size]} ${imgClass} object-cover`" :alt="alt" :src="src" />
+		<span v-else-if="placeholder" :class="ui.placeholder">{{ initials }}</span>
+		<Icon v-else-if="fallbackIcon" :name="fallbackIcon" :class="`${ui.icon.base} ${ui.icon.size[size]} `" />
 
 		<!-- <span v-if="chipColor" :class="chipClass">
 			{{ chipText }}
@@ -16,58 +15,14 @@
 	export type Size = "3xs" | "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl";
 
 	interface Props {
-		as?: string | object;
-		src?: string; // | boolean - why?
+		src?: string;
 		alt?: string;
-		text?: string;
-		icon?: string;
+		placeholder?: string;
+		fallbackIcon?: string;
 		size?: Size;
 		imgClass?: string;
 		// class?: string // [String, Object, Array] as PropType<any>
 	}
-
-	const props = withDefaults(defineProps<Props>(), {
-		as: "img",
-		src: undefined,
-		alt: undefined,
-		text: undefined,
-		icon: undefined, //() => config.default.icon
-		size: "sm", //() => config.default.size, validator(value: string) { return Object.keys(config.size).includes(value) }
-		imgClass: "", //why not undefined?
-		// class: '', //why not undefined?
-		/**
-		chipColor: {
-		  type: String as PropType<AvatarChipColor>,
-		  default: () => config.default.chipColor,
-		  validator(value: string) {
-			return ['gray', ...appConfig.ui.colors].includes(value)
-		  }
-		},
-		chipPosition: {
-		  type: String as PropType<AvatarChipPosition>,
-		  default: () => config.default.chipPosition,
-		  validator(value: string) {
-			return Object.keys(config.chip.position).includes(value)
-		  }
-		},
-		chipText: {
-		  type: [String, Number],
-		  default: null
-		},
-		ui: {
-		  type: Object as PropType<DeepPartial<typeof config> & { strategy?: Strategy }>,
-		  default: () => ({})
-		}
-	 **/
-	});
-
-	const placeholder = computed(() => {
-		return (props.alt || "")
-			.split(" ")
-			.map((word) => word.charAt(0))
-			.join("")
-			.substring(0, 2);
-	});
 
 	const ui = {
 		wrapper: "relative inline-flex items-center justify-center flex-shrink-0",
@@ -121,11 +76,48 @@
 				"3xl": "h-10 w-10",
 			},
 		},
-		default: {
-			size: "sm",
-			icon: null,
-			chipColor: null,
-			chipPosition: "top-right",
-		},
 	};
+
+	const props = withDefaults(defineProps<Props>(), {
+		src: undefined,
+		alt: undefined,
+		placeholder: undefined,
+		fallbackIcon: undefined, //() => config.default.icon
+		size: "sm", //() => config.default.size, validator(value: string) { return Object.keys(config.size).includes(value) }
+		imgClass: "", //why not undefined?
+		// class: '', //why not undefined?
+		/**
+		chipColor: {
+		  type: String as PropType<AvatarChipColor>,
+		  default: () => config.default.chipColor,
+		  validator(value: string) {
+			return ['gray', ...appConfig.ui.colors].includes(value)
+		  }
+		},
+		chipPosition: {
+		  type: String as PropType<AvatarChipPosition>,
+		  default: () => config.default.chipPosition,
+		  validator(value: string) {
+			return Object.keys(config.chip.position).includes(value)
+		  }
+		},
+		chipText: {
+		  type: [String, Number],
+		  default: null
+		},
+		ui: {
+		  type: Object as PropType<DeepPartial<typeof config> & { strategy?: Strategy }>,
+		  default: () => ({})
+		}
+	 **/
+	});
+
+	const initials = computed(() => {
+		return (props.placeholder || "")
+			.split(" ")
+			.map((word) => word.charAt(0))
+			.join("")
+			.substring(0, 2)
+			.toLocaleUpperCase();
+	});
 </script>
