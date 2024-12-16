@@ -1,7 +1,7 @@
 <template>
 	<span :class="`${ui.wrapper} ${ui.background} ${ui.rounded} ${ui.size[size]}`">
 		<img v-if="src" :class="`${ui.rounded} ${ui.size[size]} ${imgClass} object-cover`" :alt="alt" :src="src" />
-		<span v-else-if="placeholder" :class="ui.placeholder">{{ initials }}</span>
+		<span v-else-if="placeholder" :class="ui.placeholder">{{ placeholder }}</span>
 		<Icon v-else-if="fallbackIcon" :name="fallbackIcon" :class="`${ui.icon.base} ${ui.icon.size[size]} `" />
 
 		<!-- <span v-if="chipColor" :class="chipClass">
@@ -21,7 +21,7 @@
 		fallbackIcon?: string;
 		size?: Size;
 		imgClass?: string;
-		// class?: string // [String, Object, Array] as PropType<any>
+		// class?: string; // [String, Object, Array] as PropType<any>
 	}
 
 	const ui = {
@@ -78,14 +78,14 @@
 		},
 	};
 
-	const props = withDefaults(defineProps<Props>(), {
+	withDefaults(defineProps<Props>(), {
 		src: undefined,
 		alt: undefined,
 		placeholder: undefined,
 		fallbackIcon: undefined, //() => config.default.icon
 		size: "sm", //() => config.default.size
 		imgClass: "",
-		// class: '',
+		// class: "",
 		/**
 		chipColor: {
 		  type: String as PropType<AvatarChipColor>,
@@ -112,12 +112,12 @@
 	 **/
 	});
 
-	const initials = computed(() => {
-		return (props.placeholder || "")
-			.split(" ")
-			.map((word) => word.charAt(0))
-			.join("")
-			.substring(0, 2)
-			.toLocaleUpperCase();
-	});
+	// const initials = computed(() => {
+	// 	return (props.placeholder || "")
+	// 		.split(" ")
+	// 		.map((word) => word.charAt(0))
+	// 		.join("")
+	// 		.substring(0, 2)
+	// 		.toLocaleUpperCase();
+	// });
 </script>
