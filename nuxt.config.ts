@@ -8,4 +8,13 @@ export default defineNuxtConfig({
 		asyncContext: true,
 	},
 	compatibilityDate: "2024-07-06",
+	hooks: {
+		// "unocss:config": (config: UserConfig) => {
+		// 	config.safelist = config.safelist?.concat(["bg-primary"]);
+		// },
+		// "app:resolve": (app) => {},
+		// ready: (nuxt) => {
+		// 	console.log(nuxt);
+		// },
+	},
 });

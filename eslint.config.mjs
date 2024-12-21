@@ -1,4 +1,4 @@
-import withNuxt from "./.nuxt/eslint.config.mjs";
+import withNuxt from "./.playground/.nuxt/eslint.config.mjs";
 import vueeslintparser from "vue-eslint-parser";
 import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
 import unocss from "@unocss/eslint-config/flat";

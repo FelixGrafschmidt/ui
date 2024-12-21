@@ -7,10 +7,12 @@
 <script setup lang="ts">
 	import { computed } from "vue";
 
+	const config = useAppConfig();
+
 	interface Props {
 		maxwidth?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl" | "7xl" | undefined;
 		maxheight?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl" | "7xl" | undefined;
-		bgcolor?: "gray-1" | "gray-2" | "gray-3" | "gray-4" | "gray-5" | "gray-6" | "gray-7" | "gray-8" | "gray-9";
+		bgcolor?: "gray-1" | "gray-2" | "gray-3" | "gray-4" | "gray-5" | "gray-6" | "gray-7" | "gray-8" | "gray-9" | "primary";
 		as?: keyof HTMLElementTagNameMap;
 		fullwidth?: boolean;
 	}
@@ -78,6 +80,7 @@
 			"gray-7": "bg-gray-7 text-gray-1",
 			"gray-8": "bg-gray-8 text-gray-1",
 			"gray-9": "bg-gray-9 text-gray-1",
+			primary: `fg-bg-${config.theme.primary} text-gray-1`,
 		}[props.bgcolor];
 	});
 
