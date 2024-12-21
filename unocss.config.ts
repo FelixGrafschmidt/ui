@@ -1,5 +1,5 @@
 import { presetScrollbar } from "unocss-preset-scrollbar";
-import { transformerDirectives, presetUno, defineConfig, type SafeListContext } from "unocss";
+import { transformerDirectives, presetUno, defineConfig, type SafeListContext, type RuleContext } from "unocss";
 
 type ColorValue = string | Colors;
 
@@ -29,6 +29,7 @@ export default defineConfig({
 });
 
 function generateSafelist(config: SafeListContext<object>) {
+	debugger;
 	const result: string[] = [];
 	if (Array.isArray(config.generator.userConfig.shortcuts)) {
 		config.generator.userConfig.shortcuts.forEach((shortcut) => {
@@ -49,19 +50,19 @@ function generateSafelist(config: SafeListContext<object>) {
 				const colors = generateColors(theme.colors);
 				for (const color of colors) {
 					debugger;
-					const shortcutValue = shortcut[1](["", color], {});
+					const shortcutValue = shortcut[1](["", color], {} as Readonly<RuleContext<object>>);
 					if (typeof shortcutValue === "string") {
 						result.push(shortcutValue);
 					}
 
 					if (shortcut[0] instanceof RegExp) {
-						const regex = shortcut[0] as RegExp;
+						// TODO: Can thhis be done without streing manipulation on the RegExp?
+						result.push(shortcut[0].source.replace(/\(\.\*\)/, color).replace(/\^(.*)\$/, "$1"));
 					}
 				}
 			}
 		});
 	}
-	console.log(result);
 
 	return result;
 }
