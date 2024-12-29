@@ -1,5 +1,6 @@
 export default defineAppConfig({
 	theme: {
-		primary: "foo",
+		primary: "teal",
+		gray: "slate",
 	},
 });

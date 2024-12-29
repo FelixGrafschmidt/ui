@@ -18,5 +18,5 @@ export default withNuxt(eslintPluginPrettierRecommended, unocss, {
 		"vue/multi-word-component-names": "off",
 		"no-case-declarations": "off",
 	},
-	ignores: [".nuxt/*"],
+	ignores: [".nuxt/*", "dist", "node_modules"],
 });

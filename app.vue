@@ -5,3 +5,9 @@
 </template>
 
 <script setup lang="ts"></script>
+
+<style lang="postcss">
+	body {
+		background-color: #827979;
+	}
+</style>
