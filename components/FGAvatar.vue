@@ -7,7 +7,6 @@
 		<!-- <span v-if="chipColor" :class="chipClass">
 			{{ chipText }}
 		</span> -->
-		<slot />
 	</span>
 </template>
 
@@ -63,10 +62,9 @@
 		//       '3xl': 'h-5 min-w-[1.25rem] text-[14px] p-1'
 		//     }
 		//   },
-		//TODO: uses specific  or procentual sizes? add iconClass prop?
 		icon: {
 			base: "text-gray-500 dark:text-gray-400 flex-shrink-0",
-			size: "h-7.5/10 w-7.5/10",
+			size: "h-3/4 w-3/4",
 			// size: {
 			// 	"3xs": "h-2 w-2",
 			// 	"2xs": "h-2.5 w-2.5",

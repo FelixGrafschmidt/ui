@@ -1,42 +1,35 @@
 <template>
-	<span :class="`${ui.wrapper}`">
+	<div ref="wrapper" :class="`${ui.wrapper}`">
+		<!-- TODO: handle overflow -->
 		<FGAvatar
 			v-for="(avatar, index) in displayedAvatars"
 			:key="index"
 			:src="avatar.src"
 			:alt="avatar.alt"
-			:size="size"
+			:size="avatar.size || size"
 			:fallback-icon="avatar.fallbackIcon"
 			:img-class="avatar.imgClass"
 			:placeholder="avatar.placeholder"
 			:class="`${ui.margin} ${ui.ring}`"
 			:title="avatar.title"
 		/>
-	</span>
+	</div>
 </template>
 
 <script lang="ts" setup>
 	import type { FGAvatarProps } from "./FGAvatar.vue";
 
-	//TODO: rename type or keep possibility to customize size
-	export type FGAvatarPropsLite = Omit<FGAvatarProps, "size">;
-
 	export type Ui = { wrapper: string; ring: string; margin: string };
 	export type Size = "3xs" | "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl";
 
-	const displayedAvatars: ComputedRef<FGAvatarPropsLite[]> = computed(() => {
-		//TODO: deep clone needed?
-		let avatars = structuredClone(props.avatars);
-		// let avatars = props.avatars;
-
-		// TODO: what to do with props.max = 0? use "props.max === undefined || props.max < 0"?
-		if (!props.max || props.max < 0) {
-			return avatars.reverse();
+	const displayedAvatars: ComputedRef<FGAvatarProps[]> = computed(() => {
+		if (!calculatedMax.value || calculatedMax.value < 0 || props.avatars.length <= calculatedMax.value) {
+			return props.avatars.toReversed();
 		} else {
-			avatars = avatars.slice(0, props.max);
-			if (props.avatars.length > props.max) avatars.push({ placeholder: `+${props.avatars.length - props.max}` });
+			const avatars = props.avatars.slice(0, calculatedMax.value);
+			avatars.push({ placeholder: `+${props.avatars.length - calculatedMax.value}` });
 
-			return avatars.reverse();
+			return avatars.toReversed();
 		}
 	});
 
@@ -44,7 +37,7 @@
 		ui?: Ui;
 		size?: Size;
 		max?: number;
-		avatars: FGAvatarPropsLite[];
+		avatars: FGAvatarProps[];
 	}
 
 	const props = withDefaults(defineProps<Props>(), {
@@ -56,7 +49,20 @@
 			};
 		},
 		size: "sm",
-		max: undefined,
+		max: 0,
 		avatars: undefined,
+	});
+
+	const wrapper = ref<HTMLSpanElement>();
+
+	const calculatedMax = computed(() => {
+		if (!wrapper.value) {
+			return props.max;
+		}
+		const totalWidth = Object.values(wrapper.value.children).reduce((total, i) => total + (i as HTMLElement).offsetWidth, 0);
+
+		const avatarWidth = totalWidth / props.avatars.length;
+
+		return Math.min(Math.floor(wrapper.value.offsetWidth / avatarWidth) + 1, props.max);
 	});
 </script>
