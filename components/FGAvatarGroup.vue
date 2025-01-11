@@ -22,17 +22,6 @@
 	export type Ui = { wrapper: string; ring: string; margin: string };
 	export type Size = "3xs" | "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl";
 
-	const displayedAvatars: ComputedRef<FGAvatarProps[]> = computed(() => {
-		if (!calculatedMax.value || calculatedMax.value < 0 || props.avatars.length <= calculatedMax.value) {
-			return props.avatars.toReversed();
-		} else {
-			const avatars = props.avatars.slice(0, calculatedMax.value);
-			avatars.push({ placeholder: `+${props.avatars.length - calculatedMax.value}` });
-
-			return avatars.toReversed();
-		}
-	});
-
 	interface Props {
 		ui?: Ui;
 		size?: Size;
@@ -55,14 +44,49 @@
 
 	const wrapper = ref<HTMLSpanElement>();
 
+	const displayedAvatars: ComputedRef<FGAvatarProps[]> = computed(() => {
+		// const max = calculatedMax.value < props.max ? calculatedMax.value - 1 : props.max;
+		let max = Math.min(calculatedMax.value, props.max <= 0 ? calculatedMax.value : props.max);
+		// const max = Math.min(calculatedMax.value, props.max);
+
+		if (!props.max || props.max < 0 || props.avatars.length <= props.max) {
+			// reduce array if less space than needed
+			console.log(calculatedMax.value, props.avatars.length);
+
+			if (calculatedMax.value && calculatedMax.value < props.avatars.length) {
+				return reduceAvatars(max - 1);
+			}
+
+			return props.avatars.toReversed();
+		} else {
+			// reduce array for label avatar
+			if (calculatedMax.value < props.avatars.length && props.max >= calculatedMax.value) {
+				max = max - 1;
+			}
+			return reduceAvatars(max);
+		}
+	});
+
+	function reduceAvatars(max: number) {
+		const avatars = props.avatars.slice(0, max);
+		avatars.push({ placeholder: `+${props.avatars.length - max}` });
+
+		return avatars.toReversed();
+	}
+
 	const calculatedMax = computed(() => {
 		if (!wrapper.value) {
+			console.log("wrapper not found");
+
 			return props.max;
 		}
-		const totalWidth = Object.values(wrapper.value.children).reduce((total, i) => total + (i as HTMLElement).offsetWidth, 0);
+		const totalWidth = Object.values(wrapper.value.children).reduce(
+			(total, i) => total + (i as HTMLElement).clientWidth + parseInt(getComputedStyle(i).marginInlineEnd),
+			0
+		);
 
 		const avatarWidth = totalWidth / props.avatars.length;
 
-		return Math.min(Math.floor(wrapper.value.offsetWidth / avatarWidth) + 1, props.max);
+		return Math.floor(wrapper.value.offsetWidth / avatarWidth);
 	});
 </script>
