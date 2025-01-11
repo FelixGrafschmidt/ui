@@ -1,13 +1,38 @@
 <template>
 	<div class="flex flex-col gap-2">
-		<FGContainer bgcolor="primary">Lorem ipsum</FGContainer>
+		<FGButton label="Change color" @click="switchColor" />
 	</div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+	import unoCssConfig from "./unocss.config";
 
-<style lang="postcss">
+	type ColorValue = string | Colors;
+
+	interface Colors {
+		[key: string]: ColorValue;
+	}
+
+	const config = useAppConfig();
+
+	const theme = unoCssConfig.theme as { colors: Colors };
+
+	const primaryColor = config.theme.primary;
+	function switchColor() {
+		document.body.style.setProperty("--fg-primary", "yellow");
+	}
+
+	useHead(() => ({
+		bodyAttrs: {
+			style: {
+				"--fg-primary": theme.colors[primaryColor] as string,
+			},
+		},
+	}));
+</script>
+
+<style>
 	body {
-		background-color: #827979;
+		@apply bg-primary;
 	}
 </style>

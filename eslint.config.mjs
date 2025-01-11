@@ -14,7 +14,7 @@ export default withNuxt(eslintPluginPrettierRecommended, unocss, {
 	},
 	rules: {
 		"no-console": "off",
-		"no-debugger": "off",
+		"no-debugger": "warn",
 		"vue/multi-word-component-names": "off",
 		"no-case-declarations": "off",
 	},
