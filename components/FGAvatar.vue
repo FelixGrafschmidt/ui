@@ -1,9 +1,9 @@
 <template>
-	<span :class="`${ui.wrapper} ${ui.background} ${ui.rounded} ${ui.size[size]}`">
-		<img v-if="src" :class="`${ui.rounded} ${ui.size[size]} ${imgClass} object-cover`" :alt="alt" :src="src" />
+	<span :class="`${ui.wrapper} ${ui.background} ${ui.rounded} ${ui.size[size]} overflow-hidden`" :title="title">
+		<img v-if="src" :class="`${ui.size[size]} ${imgClass} object-cover`" :alt="alt" :src="src" />
 		<span v-else-if="placeholder" :class="ui.placeholder">{{ placeholder }}</span>
-		<Icon v-else-if="fallbackIcon" :name="fallbackIcon" :class="`${ui.icon.base} ${ui.icon.size[size]} `" />
-
+		<Icon v-else-if="fallbackIcon" :name="fallbackIcon" :class="`${ui.icon.base} ${ui.icon.size}`" />
+		<!-- ${ui.icon.size[size]} -->
 		<!-- <span v-if="chipColor" :class="chipClass">
 			{{ chipText }}
 		</span> -->
@@ -14,13 +14,14 @@
 <script lang="ts" setup>
 	export type Size = "3xs" | "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl";
 
-	interface Props {
+	export interface FGAvatarProps {
 		src?: string;
 		alt?: string;
 		placeholder?: string;
 		fallbackIcon?: string;
 		size?: Size;
 		imgClass?: string;
+		title?: string;
 		// class?: string; // [String, Object, Array] as PropType<any>
 	}
 
@@ -62,29 +63,32 @@
 		//       '3xl': 'h-5 min-w-[1.25rem] text-[14px] p-1'
 		//     }
 		//   },
+		//TODO: uses specific  or procentual sizes? add iconClass prop?
 		icon: {
 			base: "text-gray-500 dark:text-gray-400 flex-shrink-0",
-			size: {
-				"3xs": "h-2 w-2",
-				"2xs": "h-2.5 w-2.5",
-				xs: "h-3 w-3",
-				sm: "h-4 w-4",
-				md: "h-5 w-5",
-				lg: "h-6 w-6",
-				xl: "h-7 w-7",
-				"2xl": "h-8 w-8",
-				"3xl": "h-10 w-10",
-			},
+			size: "h-7.5/10 w-7.5/10",
+			// size: {
+			// 	"3xs": "h-2 w-2",
+			// 	"2xs": "h-2.5 w-2.5",
+			// 	xs: "h-3 w-3",
+			// 	sm: "h-4 w-4",
+			// 	md: "h-5 w-5",
+			// 	lg: "h-6 w-6",
+			// 	xl: "h-7 w-7",
+			// 	"2xl": "h-8 w-8",
+			// 	"3xl": "h-10 w-10",
+			// },
 		},
 	};
 
-	withDefaults(defineProps<Props>(), {
+	withDefaults(defineProps<FGAvatarProps>(), {
 		src: undefined,
 		alt: undefined,
 		placeholder: undefined,
 		fallbackIcon: undefined, //() => config.default.icon
 		size: "sm", //() => config.default.size
 		imgClass: "",
+		title: undefined,
 		// class: "",
 		/**
 		chipColor: {
