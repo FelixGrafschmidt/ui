@@ -14,38 +14,36 @@
 	const appConfig = useAppConfig();
 	const requiredThemeColors = Object.keys(appConfig["fg-theme"]);
 
-	type ColorValue = string | Colors;
-
-	interface Colors {
-		[key: string]: ColorValue;
+	interface UnocssThemeColors {
+		[key: string]: string;
 	}
 
-	type ThemeKey = keyof (typeof appConfig)["fg-theme"];
+	type AppConfigThemeKey = keyof (typeof appConfig)["fg-theme"];
 
-	async function initTheme(): Promise<Record<ThemeKey, Record<keyof typeof requiredThemeShades, string>>> {
+	async function initTheme(): Promise<Record<AppConfigThemeKey, Record<keyof typeof requiredThemeShades, string>>> {
 		const ctx = await createGenerator(props.unocssConfig);
-		const themeColors = (ctx.config.theme as { colors: Colors }).colors;
+		const unocssThemeColors = (ctx.config.theme as { colors: UnocssThemeColors }).colors;
 
-		const result = Object.fromEntries(requiredThemeColors.map((colorName) => [colorName, {}])) as Record<
-			ThemeKey,
+		const result = Object.fromEntries(requiredThemeColors.map((requiredThemeColorName) => [requiredThemeColorName, {}])) as Record<
+			AppConfigThemeKey,
 			Record<keyof typeof requiredThemeShades, string>
 		>;
 
-		for (const colorName of requiredThemeColors) {
-			const colorKey = appConfig["fg-theme"][colorName as ThemeKey];
-			const color = themeColors[colorKey];
-			if (typeof color === "string") {
-				throw new Error(`Theme color "${colorKey}" is not an object`);
+		for (const requiredThemeColorName of requiredThemeColors) {
+			const effectiveColorName = appConfig["fg-theme"][requiredThemeColorName as AppConfigThemeKey];
+			const unocssColorObject = unocssThemeColors[effectiveColorName];
+			if (typeof unocssColorObject === "string") {
+				throw new Error(`Theme color "${effectiveColorName}" is not an object`);
 			}
 
-			const colorKeys = Object.keys(color);
-			const missingShades = requiredThemeShades.filter((shade) => !colorKeys.includes(shade));
+			const unocssColorKeys = Object.keys(unocssColorObject);
+			const missingShades = requiredThemeShades.filter((shade) => !unocssColorKeys.includes(shade));
 			if (missingShades.length) {
 				throw new Error(
-					`Theme color "${colorKey}" is missing "${missingShades.join('", "')}" ${missingShades.length > 1 ? "shades" : "shade"}`
+					`Theme color "${effectiveColorName}" is missing "${missingShades.join('", "')}" ${missingShades.length > 1 ? "shades" : "shade"}`
 				);
 			}
-			result[colorName as ThemeKey] = color as Record<keyof typeof requiredThemeShades, string>;
+			result[requiredThemeColorName as AppConfigThemeKey] = unocssColorObject as Record<keyof typeof requiredThemeShades, string>;
 		}
 		return result;
 	}
