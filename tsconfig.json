@@ -1,6 +1,9 @@
 {
   "extends": "./.playground/.nuxt/tsconfig.json",
   "compilerOptions": {
+    "types": [
+      "@pinia/nuxt"
+    ],
     "noImplicitAny": true,
     "allowSyntheticDefaultImports": true,
     "module": "ESNext"

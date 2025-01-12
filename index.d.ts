@@ -1,7 +1,9 @@
 declare module "@nuxt/schema" {
 	interface AppConfigInput {
-		theme?: {
+		"fg-theme"?: {
 			primary?: string;
+			secondary?: string;
+			tertiary?: string;
 			gray?: string;
 		};
 	}
@@ -9,8 +11,10 @@ declare module "@nuxt/schema" {
 
 declare module "@nuxt/schema" {
 	interface AppConfig {
-		theme: {
+		"fg-theme": {
 			primary: string;
+			secondary: string;
+			tertiary: string;
 			gray: string;
 		};
 	}

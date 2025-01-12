@@ -1,6 +1,8 @@
 export default defineAppConfig({
-	theme: {
-		primary: "fg-brand",
+	"fg-theme": {
+		primary: "teal",
+		secondary: "rose",
+		tertiary: "purple",
 		gray: "slate",
 	},
 });
