@@ -77,9 +77,3 @@
 		return result;
 	});
 </script>
-
-<style>
-	body {
-		@apply bg-gray-7 text-gray-2;
-	}
-</style>
