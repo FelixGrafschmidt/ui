@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-	import type { FGAvatarProps } from "../components/FGAvatar.vue";
+	import type { FGAvatarProps } from "./components/FGAvatar.vue";
 
 	const max = ref(0);
 	const avatars: FGAvatarProps[] = [
