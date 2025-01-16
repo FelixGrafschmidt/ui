@@ -1,6 +1,5 @@
 <template>
 	<div ref="wrapper" :class="`${ui.wrapper}`">
-		<!-- TODO: handle overflow -->
 		<FGAvatar
 			v-for="(avatar, index) in displayedAvatars"
 			:key="index"
@@ -17,14 +16,13 @@
 </template>
 
 <script lang="ts" setup>
-	import type { FGAvatarProps } from "./FGAvatar.vue";
+	import type { AvatarSize, FGAvatarProps } from "./FGAvatar.vue";
 
 	export type Ui = { wrapper: string; ring: string; margin: string };
-	export type Size = "3xs" | "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl";
 
 	interface Props {
 		ui?: Ui;
-		size?: Size;
+		size?: AvatarSize;
 		max?: number;
 		avatars: FGAvatarProps[];
 	}
@@ -33,11 +31,11 @@
 		ui: () => {
 			return {
 				wrapper: "inline-flex flex-row-reverse justify-end p-1",
-				ring: "ring-2 ring-white dark:ring-gray-900",
-				margin: "-me-1.5 first:me-0",
+				ring: "ring-2 ring-white dark:ring-[var(--fg-gray-9)]",
+				margin: "-ml-1.5 last:ml-0",
 			};
 		},
-		size: "sm",
+		size: "md",
 		max: 0,
 		avatars: undefined,
 	});
@@ -45,13 +43,10 @@
 	const wrapper = ref<HTMLSpanElement>();
 
 	const displayedAvatars: ComputedRef<FGAvatarProps[]> = computed(() => {
-		// const max = calculatedMax.value < props.max ? calculatedMax.value - 1 : props.max;
 		let max = Math.min(calculatedMax.value, props.max <= 0 ? calculatedMax.value : props.max);
-		// const max = Math.min(calculatedMax.value, props.max);
 
 		if (!props.max || props.max < 0 || props.avatars.length <= props.max) {
 			// reduce array if less space than needed
-			console.log(calculatedMax.value, props.avatars.length);
 
 			if (calculatedMax.value && calculatedMax.value < props.avatars.length) {
 				return reduceAvatars(max - 1);
@@ -74,14 +69,13 @@
 		return avatars.toReversed();
 	}
 
+	// TODO: add resize observer
 	const calculatedMax = computed(() => {
 		if (!wrapper.value) {
-			console.log("wrapper not found");
-
 			return props.max;
 		}
 		const totalWidth = Object.values(wrapper.value.children).reduce(
-			(total, i) => total + (i as HTMLElement).clientWidth + parseInt(getComputedStyle(i).marginInlineEnd),
+			(total, i) => total + (i as HTMLElement).clientWidth + parseInt(getComputedStyle(i).marginLeft),
 			0
 		);
 
