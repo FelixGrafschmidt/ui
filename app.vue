@@ -118,3 +118,9 @@
 		},
 	];
 </script>
+
+<style>
+	body {
+		@apply bg-primary-8;
+	}
+</style>

@@ -31,7 +31,7 @@
 		ui: () => {
 			return {
 				wrapper: "inline-flex flex-row-reverse justify-end p-1",
-				ring: "ring-2 ring-white dark:ring-[var(--fg-gray-9)]",
+				ring: "ring-2 ring-white dark:ring-gray-9",
 				margin: "-ml-1.5 last:ml-0",
 			};
 		},

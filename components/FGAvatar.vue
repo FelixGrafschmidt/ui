@@ -22,10 +22,10 @@
 
 	const ui = {
 		wrapper: "relative inline-flex items-center justify-center flex-shrink-0 overflow-hidden",
-		background: "bg-[var(--fg-gray-1)] dark:bg-[var(--fg-gray-8)]",
+		background: "bg-gray-1 dark:bg-gray-8",
 		rounded: "rounded-full",
-		text: "font-medium leading-none text-[var(--fg-gray-9)] dark:text-white truncate",
-		placeholder: "font-medium leading-none text-[var(--fg-gray-5)] dark:text-[var(--fg-gray-4)] truncate",
+		text: "font-medium leading-none text-gray-9 dark:text-white truncate",
+		placeholder: "font-medium leading-none text-gray-5 dark:text-gray-4 truncate",
 		size: {
 			"3xs": "h-4 w-4 text-[8px]",
 			"2xs": "h-5 w-5 text-[10px]",
@@ -38,7 +38,7 @@
 			"3xl": "h-20 w-20 text-3xl",
 		},
 		icon: {
-			base: "text-[var(--fg-gray-5)] dark:text-[var(--fg-gray-4)] flex-shrink-0",
+			base: "text-gray-5 dark:text-gray-4 flex-shrink-0",
 			size: "h-3/4 w-3/4",
 		},
 		imgClass: "object-cover",
