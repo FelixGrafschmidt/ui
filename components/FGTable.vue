@@ -49,7 +49,7 @@
 			<div
 				v-for="(row, i) in data"
 				:key="i"
-				class="flex flex-row divide-x-1 divide-gray-2 even:bg-gray-8 hover:bg-teal-7 even:hover:bg-teal-7"
+				class="flex flex-row divide-x-1 divide-gray-2 even:bg-gray-8 hover:bg-primary-7 even:hover:bg-primary-7"
 				:class="isClickable ? 'cursor-pointer' : ''"
 				@click="emit('click', row)"
 			>

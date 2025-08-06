@@ -24,7 +24,7 @@
 <script setup lang="ts">
 	import { computed } from "vue";
 
-	export type Color = "teal" | "green" | "red" | "gray" | "black" | "white";
+	export type Color = "primary" | "green" | "red" | "gray" | "black" | "white";
 	export type Variant = "solid" | "outline" | "ghost" | "link";
 	export type Size = "sm" | "md" | "lg" | "xl" | "2xl" | "3xl";
 	interface Props {
@@ -78,41 +78,41 @@
 	};
 
 	const colors: Record<Color, Record<Variant, string>> = {
-		teal: {
-			ghost: "focus:outline bg-transparent border-transparent text-teal hover:bg-teal-9",
-			link: "bg-transparent border-transparent text-teal hover:text-teal-6 hover:underline hover:underline-solid hover:underline-teal-6",
-			outline: "focus:outline bg-transparent border-teal text-teal hover:bg-teal-9",
-			solid: "focus:outline bg-teal hover:bg-teal-1  text-gray-8 border-teal",
+		primary: {
+			ghost: "focus:outline bg-transparent border-transparent text-primary hover:bg-primary-9",
+			link: "bg-transparent border-transparent text-primary hover:text-primary-6 hover:underline hover:underline-solid hover:underline-primary-6",
+			outline: "focus:outline bg-transparent border-primary text-primary hover:bg-primary-9",
+			solid: "focus:outline bg-primary hover:bg-primary-1 text-gray-8 border-primary",
 		},
 		green: {
 			ghost: "focus:outline bg-transparent border-transparent text-green hover:bg-green-9",
 			link: "bg-transparent border-transparent text-green hover:text-green-6 hover:underline hover:underline-solid hover:underline-green-6",
 			outline: "focus:outline bg-transparent border-green text-green hover:bg-green-9",
-			solid: "focus:outline bg-green hover:bg-green-2  text-gray-8 border-green",
+			solid: "focus:outline bg-green hover:bg-green-2 text-gray-8 border-green",
 		},
 		white: {
 			ghost: "focus:outline bg-transparent border-transparent text-white hover:bg-gray-5",
 			link: "bg-transparent border-transparent text-white hover:text-gray-2 hover:underline hover:underline-solid hover:underline-gray-2",
 			outline: "focus:outline bg-transparent border-white text-white hover:bg-gray-5",
-			solid: "focus:outline bg-white hover:bg-gray-2  text-gray-8 border-white",
+			solid: "focus:outline bg-white hover:bg-gray-2 text-gray-8 border-white",
 		},
 		gray: {
 			ghost: "focus:outline bg-transparent border-transparent text-gray hover:bg-gray-9",
 			link: "bg-transparent border-transparent text-gray hover:text-gray-5 hover:underline hover:underline-solid hover:underline-gray-5",
 			outline: "focus:outline bg-transparent border-gray text-gray hover:bg-gray-9",
-			solid: "focus:outline bg-gray hover:bg-gray-3  text-gray-8 border-gray",
+			solid: "focus:outline bg-gray hover:bg-gray-3 text-gray-8 border-gray",
 		},
 		red: {
 			ghost: "focus:outline bg-transparent border-transparent text-red hover:bg-red-9",
 			link: "bg-transparent border-transparent text-red hover:text-red-6 hover:underline hover:underline-solid hover:underline-red-6",
 			outline: "focus:outline bg-transparent border-red text-red hover:bg-red-9",
-			solid: "focus:outline bg-red hover:bg-red-3  text-gray-1 border-red",
+			solid: "focus:outline bg-red hover:bg-red-3 text-gray-1 border-red",
 		},
 		black: {
 			ghost: "focus:outline bg-transparent border-transparent text-black hover:bg-gray-6",
 			link: "bg-transparent border-transparent text-black hover:text-gray-8 hover:underline hover:underline-solid hover:underline-gray-8",
 			outline: "focus:outline bg-transparent border-black text-black hover:bg-gray-6",
-			solid: "focus:outline bg-black hover:bg-gray-8  text-gray-2 border-black",
+			solid: "focus:outline bg-black hover:bg-gray-8 text-gray-2 border-black",
 		},
 	};
 
@@ -156,7 +156,7 @@
 			"3xl": "after:h-8 after:w-8 after:border-2",
 		}[props.size];
 		const color = {
-			teal: {
+			primary: {
 				ghost: "after:border-color-[#2dd4bf_transparent_#2dd4bf_transparent]",
 				link: "after:border-color-[#2dd4bf_transparent_#2dd4bf_transparent]",
 				outline: "after:border-color-[#2dd4bf_transparent_#2dd4bf_transparent]",

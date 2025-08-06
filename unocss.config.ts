@@ -1,5 +1,5 @@
 import { presetScrollbar } from "unocss-preset-scrollbar";
-import { transformerDirectives, presetUno, defineConfig } from "unocss";
+import { transformerDirectives, defineConfig, presetWind3 } from "unocss";
 
 type ColorValue = string | Colors;
 
@@ -13,60 +13,38 @@ export default defineConfig({
 	// core options
 	rules: [],
 	presets: [
-		presetUno(),
+		presetWind3(),
 		presetScrollbar({
 			// config
 		}),
 	],
 	theme: {
 		colors: {
-			primary: {
-				DEFAULT: "var(--fg-primary-DEFAULT)",
-				1: "var(--fg-primary-1)",
-				2: "var(--fg-primary-2)",
-				3: "var(--fg-primary-3)",
-				4: "var(--fg-primary-4)",
-				5: "var(--fg-primary-5)",
-				6: "var(--fg-primary-6)",
-				7: "var(--fg-primary-7)",
-				8: "var(--fg-primary-8)",
-				9: "var(--fg-primary-9)",
-			},
-			secondary: {
-				DEFAULT: "var(--fg-secondary-DEFAULT)",
-				1: "var(--fg-secondary-1)",
-				2: "var(--fg-secondary-2)",
-				3: "var(--fg-secondary-3)",
-				4: "var(--fg-secondary-4)",
-				5: "var(--fg-secondary-5)",
-				6: "var(--fg-secondary-6)",
-				7: "var(--fg-secondary-7)",
-				8: "var(--fg-secondary-8)",
-				9: "var(--fg-secondary-9)",
-			},
-			tertiary: {
-				DEFAULT: "var(--fg-tertiary-DEFAULT)",
-				1: "var(--fg-tertiary-1)",
-				2: "var(--fg-tertiary-2)",
-				3: "var(--fg-tertiary-3)",
-				4: "var(--fg-tertiary-4)",
-				5: "var(--fg-tertiary-5)",
-				6: "var(--fg-tertiary-6)",
-				7: "var(--fg-tertiary-7)",
-				8: "var(--fg-tertiary-8)",
-				9: "var(--fg-tertiary-9)",
-			},
+			// slate
 			gray: {
-				DEFAULT: "var(--fg-gray-DEFAULT)",
-				1: "var(--fg-gray-1)",
-				2: "var(--fg-gray-2)",
-				3: "var(--fg-gray-3)",
-				4: "var(--fg-gray-4)",
-				5: "var(--fg-gray-5)",
-				6: "var(--fg-gray-6)",
-				7: "var(--fg-gray-7)",
-				8: "var(--fg-gray-8)",
-				9: "var(--fg-gray-9)",
+				50: "#f9fafb",
+				100: "#f4f5f7",
+				200: "#e5e7eb",
+				300: "#d2d6dc",
+				400: "#9fa6b2",
+				500: "#6b7280",
+				600: "#4b5563",
+				700: "#374151",
+				800: "#252f3f",
+				900: "#161e2e",
+			},
+			// teal
+			primary: {
+				50: "#f0fdfa",
+				100: "#ccfbf1",
+				200: "#99f6e4",
+				300: "#5eead4",
+				400: "#2dd4bf",
+				500: "#14b8a6",
+				600: "#0d9488",
+				700: "#0f766e",
+				800: "#115e59",
+				900: "#134e4a",
 			},
 		},
 	},
