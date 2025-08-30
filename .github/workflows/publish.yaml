@@ -20,7 +20,7 @@ jobs:
       #   run: yarn install
       # - name: Build package
       #   run: npm run build
-      - name: Publish package
-        run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - uses: simenandre/publish-with-yarn@v2
+        with:
+          npm-auth-token: ${{ secrets.NPM_TOKEN }}
