@@ -1,4 +1,9 @@
 export default defineNuxtConfig({
-	extends: [["..", { install: true }]],
-	modules: ["@nuxt/eslint"],
+  extends: [['..', { install: true }]],
+  modules: ['@nuxt/eslint'],
+  eslint: {
+    config: {
+      standalone: false,
+    },
+  },
 });
