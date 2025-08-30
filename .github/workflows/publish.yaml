@@ -22,11 +22,6 @@ jobs:
           registry-url: https://registry.npmjs.org
           cache: yarn
 
-      # # - name: Install dependencies
-      #   run: yarn install
-      # - name: Build package
-      #   run: npm run build
-
       - uses: simenandre/publish-with-yarn@v2
         with:
           npm-auth-token: ${{ secrets.NPM_TOKEN }}
