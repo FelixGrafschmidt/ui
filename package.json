@@ -1,6 +1,6 @@
 {
   "name": "ui.felgraf.dev",
-  "version": "1.0.8",
+  "version": "1.0.13",
   "description": "UI library for my projects",
   "license": "MIT",
   "main": "./nuxt.config.ts",
